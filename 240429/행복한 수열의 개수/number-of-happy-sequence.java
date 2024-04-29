@@ -5,22 +5,20 @@ public class Main {
     static int[][] grid;
 
     static boolean check(int[] arr) {
-        int cnt = 1;
-        int cur = arr[0];
+        int conCnt = 1;
+        int maxConCnt = 1;
 
-        for (int i = 1; i < arr.length; i++) {
-            if (cur == arr[i]) {
-                cnt++;
-                if (cnt == m) return true;
+        for (int i = 1; i < n; i++) {
+            if (arr[i - 1] == arr[i]) {
+                conCnt++;
             } else {
-                cnt = 1;
-                cur = arr[i];
+                conCnt = 1;
             }
+
+            maxConCnt = Math.max(maxConCnt, conCnt);
         }
 
-        if (cnt == m) return true;
-
-        return false;
+        return maxConCnt >= m;
     }
 
     public static void main(String[] args) {
