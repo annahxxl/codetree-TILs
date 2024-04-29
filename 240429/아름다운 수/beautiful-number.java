@@ -20,14 +20,12 @@ public class Main {
     }
 
     static boolean check() {
-        int[] cnt = new int[5];
+        for (int i = 0; i < n; i += result[i]) {
+            if (i + result[i] - 1 >= n) return false;
 
-        for (int i = 0; i < n; i++) {
-            cnt[result[i]]++;
-        }
-
-        for (int i = 1; i < 5; i++) {
-            if (cnt[i] % i != 0) return false;
+            for (int j = i; j < i + result[i]; j++) {
+                if (result[j] != result[i]) return false;
+            }
         }
 
         return true;
