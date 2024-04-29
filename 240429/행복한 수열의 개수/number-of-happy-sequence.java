@@ -18,6 +18,8 @@ public class Main {
             }
         }
 
+        if (cnt == m) return true;
+
         return false;
     }
 
