@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class Main {
-    static int n, k, answer;
+    static int n, k; 
+    static int answer = 1;
     static int[][] grid;
     static boolean[][] visited;
     static Queue<int[]> q = new LinkedList<>();
@@ -41,8 +42,9 @@ public class Main {
         }
 
         for (int i = 0; i < k; i++) {
-            int x = sc.nextInt();
-            int y = sc.nextInt();
+            int x = sc.nextInt() - 1;
+            int y = sc.nextInt() - 1;
+            visited[x][y] = true;
             q.offer(new int[]{x, y});
         }
 
