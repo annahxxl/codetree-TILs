@@ -4,7 +4,7 @@ public class Main {
     static int n, m, answer;
     static int[][] grid;
     static boolean[][] visited;
-    static int[][] dir = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    static int[][] dir = { {0, 1}, {1, 0} };
 
     static void dfs(int x, int y) {
         for (int i = 0; i < dir.length; i++) {
