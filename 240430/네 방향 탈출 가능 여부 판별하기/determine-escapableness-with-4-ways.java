@@ -16,7 +16,7 @@ public class Main {
                 int[] d = dir[i];
                 int nx = x + d[0], ny = y + d[1];
 
-                if (nx >= 0 && nx < n && ny >= 0 && ny < m && !visited[nx][ny]) {
+                if (nx >= 0 && nx < n && ny >= 0 && ny < m && grid[nx][ny] == 0 && !visited[nx][ny]) {
                     visited[nx][ny] = true;
                     q.offer(new int[]{nx, ny});
                 }
