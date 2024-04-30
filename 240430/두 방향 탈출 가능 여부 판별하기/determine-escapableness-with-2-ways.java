@@ -11,7 +11,7 @@ public class Main {
             int[] d = dir[i];
             int nx = x + d[0], ny = y + d[1];
             
-            if (nx >= 0 && nx < n && ny >= 0 && nx < m && grid[nx][ny] == 1 && visited[nx][ny] == false) {
+            if (nx >= 0 && nx < n && ny >= 0 && ny < m && grid[nx][ny] == 1 && visited[nx][ny] == false) {
                 visited[nx][ny] = true;
                 dfs(nx, ny);
             }
@@ -27,6 +27,12 @@ public class Main {
 
         grid = new int[n][m];
         visited = new boolean[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                grid[i][j] = sc.nextInt();
+            }
+        }
 
         visited[0][0] = true;
 
