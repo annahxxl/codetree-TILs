@@ -8,7 +8,7 @@ public class Main {
         int[] dp = new int[n + 1];
 
         for (int i = 1; i <= n; i++) {
-            if (i == 1 || i == 2) {
+            if (i <= 2) {
                 dp[i] = 1;
                 continue;
             }
