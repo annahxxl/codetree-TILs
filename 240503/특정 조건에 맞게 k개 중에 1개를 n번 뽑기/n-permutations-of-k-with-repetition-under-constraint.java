@@ -16,11 +16,13 @@ public class Main {
         }
 
         for(int i = 1; i <= k; i++) {
-            if(cnt[i] >= 3) continue;
-            cnt[i]++;
-            result.add(i);
-            dfs(depth + 1);
-            result.remove(result.size() - 1);
+            if(cnt[i] < 2) {
+                cnt[i]++;
+                result.add(i);
+                dfs(depth + 1);
+                result.remove(result.size() - 1);
+                cnt[i]--;
+            }
         }
     }
 
