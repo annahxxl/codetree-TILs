@@ -3,25 +3,25 @@ import java.util.*;
 public class Main {
     static int k, n;
     static ArrayList<Integer> result = new ArrayList<>();
-    static int[] cnt;
+
+    static boolean check(int num) {
+        int resultSize = result.size();
+        return !(result.get(resultSize - 1) == num && result.get(resultSize - 2) == num);
+    }
 
     static void dfs(int depth) {
-
         if(depth == n) {
             for(int i = 0; i < n; i++)
                 System.out.print(result.get(i) + " ");
             System.out.println();
-
             return;
         }
 
         for(int i = 1; i <= k; i++) {
-            if(cnt[i] < 2) {
-                cnt[i]++;
+            if(result.size() < 2 || check(i)) {
                 result.add(i);
                 dfs(depth + 1);
                 result.remove(result.size() - 1);
-                cnt[i]--;
             }
         }
     }
@@ -31,7 +31,6 @@ public class Main {
 
         k = sc.nextInt();
         n = sc.nextInt();
-        cnt = new int[k + 1];
 
         dfs(0);
     }
