@@ -7,8 +7,8 @@ public class Main {
         int n = sc.nextInt();
         int t = sc.nextInt();
 
-        int[] u = int[n];
-        int[] d = int[n];
+        int[] u = new int[n];
+        int[] d = new int[n];
 
         for(int i = 0; i < n; i++)
             u[i] = sc.nextInt();
@@ -18,12 +18,12 @@ public class Main {
         for(int i = 0; i < t; i++) {
             int tmp = u[n - 1];
 
-            for(int i = n - 1; i > 0; i--) 
-                u[i] = u[i - 1];
+            for(int j = n - 1; j > 0; j--) 
+                u[j] = u[j - 1];
             u[0] = d[n - 1];
 
-            for(int i = n - 1; i > 0; i--)
-                d[i] = d[i - 1];
+            for(int j = n - 1; j > 0; j--)
+                d[j] = d[j - 1];
             d[0] = tmp;
         }
 
