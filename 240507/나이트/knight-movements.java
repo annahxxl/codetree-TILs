@@ -7,6 +7,11 @@ public class Main {
         int n = sc.nextInt();
         int r1 = sc.nextInt(), c1 = sc.nextInt(), r2 = sc.nextInt(),c2 = sc.nextInt();
 
+        if(r1 == r2 && c1 == c2) {
+            System.out.println(0);
+            return;
+        }
+
         int[][] step = new int[n + 1][n + 1];
         boolean[][] visited = new boolean[n + 1][n + 1];
         int[][] dir = new int[][] { {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2} };
