@@ -55,6 +55,7 @@ public class Main {
                     } else {
                         cnt[i][j] = 0;
                     }
+                    ncnt[i][j] = 0;
                 }
             }
         }
@@ -63,7 +64,7 @@ public class Main {
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                if(ncnt[i][j] == 1)
+                if(cnt[i][j] == 1)
                     answer++;
             }
         }
