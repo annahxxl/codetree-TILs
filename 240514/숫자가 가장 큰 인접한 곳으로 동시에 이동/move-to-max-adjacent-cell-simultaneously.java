@@ -43,7 +43,7 @@ public class Main {
                             }
                         }
 
-                        ncnt[i][j]++;
+                        ncnt[mr][mc]++;
                     }
                 }
             }
