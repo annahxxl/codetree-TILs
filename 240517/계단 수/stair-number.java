@@ -27,7 +27,7 @@ public class Main {
         int answer = 0;
 
         for(int i = 0; i <= 9; i++)
-            answer += dp[n][i];
+            answer =  (answer + dp[n][i]) % MOD;
         
         System.out.println(answer);
     }
