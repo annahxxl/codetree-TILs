@@ -24,15 +24,9 @@ public class Main {
         for(int i = 1; i < n; i++)
             dp[0][i] = Math.min(grid[0][i], dp[0][i - 1]);
 
-        for(int i = 1; i < n; i++) {
-            for(int j = 1; j < n; j++) {
-                if(i == n - 1 && j == n - 1) {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                } else {
-                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]);
-                }
-            }
-        }
+        for(int i = 1; i < n; i++)
+            for(int j = 1; j < n; j++)
+                dp[i][j] = Math.max(Math.min(grid[i][j], dp[i - 1][j]), Math.min(grid[i][j], dp[i][j - 1]));
         
         System.out.println(dp[n - 1][n - 1]);
     }
