@@ -10,10 +10,11 @@ public class Main {
             coins[i] = sc.nextInt();
         
         int[] dp = new int[m + 1];
-        for(int i = 0; i <= m; i++)
+        for(int i = 1; i <= m; i++)
             dp[i] = -1;
         for(int i = 0; i < n; i++)
-            dp[coins[i]] = 1;
+            if (coins[i] <= m)
+                dp[coins[i]] = 1;
         
         for(int i = 1; i <= m; i++) {
             for(int j = 0; j < n; j++) {
