@@ -13,7 +13,7 @@ public class Main {
         }
 
         for(Map.Entry<String, Integer> e : m.entrySet()) {
-            double ratio = e.getValue() * 100 / n;
+            double ratio = (double) e.getValue() * 100 / n;
             System.out.printf("%s %.4f\n", e.getKey(), ratio);
         }
     }
