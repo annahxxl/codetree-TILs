@@ -9,11 +9,6 @@ public class Main {
 
     static void dfs() {
         if(res.size() == n) {
-            if(n == 1) {
-                if(n == Math.abs(m)) answer = 1;
-                return;
-            }
-
             int total = 0;
             for(int i = 0; i < n; i++) {
                 int op = res.get(i);
@@ -43,6 +38,12 @@ public class Main {
         nums = new int[n];
         for(int i = 0; i < n; i++)
             nums[i] = sc.nextInt();
+        if(n == 1) {
+            if(n == Math.abs(m)) {
+                System.out.println(1);
+                return;
+            }
+        }
         dfs();
         System.out.println(answer);
     }
