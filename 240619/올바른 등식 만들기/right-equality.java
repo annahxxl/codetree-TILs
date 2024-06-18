@@ -1,50 +1,28 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-    static int n;
-    static int m;
-    static int[] nums;
-    static ArrayList<Integer> res = new ArrayList<>();
-    static int answer = 0;
-
-    static void dfs() {
-        if(res.size() == n) {
-            int total = 0;
-            for(int i = 0; i < n; i++) {
-                int op = res.get(i);
-                if(op == 1) {
-                    total += nums[i];
-                } else {
-                    total -= nums[i];
-                }
-            }
-
-            if(total < -20 || total > 20) return;
-            if(total == m) answer++;
-            return;
-        }
-
-        for(int i = 0; i <= 1; i++) {
-            res.add(i);
-            dfs();
-            res.remove(res.size() - 1);
-        }
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
-        nums = new int[n];
-        for(int i = 0; i < n; i++)
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[] nums = new int[n + 1];
+        for(int i = 1; i <= n; i++)
             nums[i] = sc.nextInt();
-        if(n == 1) {
-            if(n == Math.abs(m)) {
-                System.out.println(1);
-                return;
+        
+        int offset = 20;
+        int[][] dp = new int[101][41];
+        dp[0][0 + offset] = 1;
+        m += offset;
+        
+        for(int i = 1; i <= n; i++) {
+            for(int j = 0; j <= 40; j++) {
+                if(j + nums[i] <= 40)
+                    dp[i][j] += dp[i - 1][j + nums[i]];
+                if(j - nums[i] >= 0)
+                    dp[i][j] += dp[i - 1][j - nums[i]];
             }
         }
-        dfs();
-        System.out.println(answer);
+
+        System.out.println(dp[n][m]);
     }
 }
