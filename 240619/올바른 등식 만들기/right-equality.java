@@ -10,7 +10,7 @@ public class Main {
             nums[i] = sc.nextInt();
         
         int offset = 20;
-        int[][] dp = new int[101][41];
+        long[][] dp = new long[101][41];
         dp[0][0 + offset] = 1;
         m += offset;
         
