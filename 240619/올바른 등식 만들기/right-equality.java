@@ -8,10 +8,15 @@ public class Main {
     static int answer = 0;
 
     static void dfs() {
-        if(res.size() == n - 1) {
-            int total = nums[0];
-            for(int i = 1; i < n; i++) {
-                int op = res.get(i - 1);
+        if(res.size() == n) {
+            if(n == 1) {
+                if(n == Math.abs(m)) answer = 1;
+                return;
+            }
+
+            int total = 0;
+            for(int i = 0; i < n; i++) {
+                int op = res.get(i);
                 if(op == 1) {
                     total += nums[i];
                 } else {
@@ -20,15 +25,15 @@ public class Main {
             }
 
             if(total < -20 || total > 20) return;
-            answer++;
+            if(total == m) answer++;
             return;
         }
 
-        res.add(1);
-        dfs();
-        res.remove(res.size() - 1);
-        res.add(0);
-        dfs();
+        for(int i = 0; i <= 1; i++) {
+            res.add(i);
+            dfs();
+            res.remove(res.size() - 1);
+        }
     }
 
     public static void main(String[] args) {
