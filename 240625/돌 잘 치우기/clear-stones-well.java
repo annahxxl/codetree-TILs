@@ -5,41 +5,66 @@ public class Main {
     static int k;
     static int m;
     static int[][] grid;
-    static ArrayList<Integer> res = new ArrayList<>();
     static ArrayList<int[]> starts = new ArrayList<>();
     static ArrayList<int[]> stones = new ArrayList<>();
     static ArrayList<int[]> combs = new ArrayList<>();
 
-    static void createCombs(int s) {
-        if(res.size() == m) {
-            int[] result = new int[m];
-            for(int i = 0; i < res.size(); i++)
-                result[i] = res.get(i);
-            combs.add(result);
+    static void createCombs(int start, int count, int[] selected) {
+        if (count == m) {
+            combs.add(selected.clone());
+            return;
         }
 
-        for(int i = s; i < stones.size(); i++) {
-            res.add(i);
-            createCombs(i + 1);
+        for (int i = start; i < stones.size(); i++) {
+            selected[count] = i;
+            createCombs(i + 1, count + 1, selected);
         }
     }
 
-    static int[][] createMap(int combIdx) {
+    static int[][] createMap(int[] comb) {
         int[][] map = new int[n][n];
 
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < n; j++)
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
                 map[i][j] = grid[i][j];
         
-        int[] comb = combs.get(combIdx);
-        for(int i = 0; i < comb.length; i++) {
-            int[] stone = stones.get(i);
+        for (int idx : comb) {
+            int[] stone = stones.get(idx);
             int r = stone[0];
             int c = stone[1];
-            map[r][c] = 1;
+            map[r][c] = 0;
         }
 
         return map;
+    }
+
+    static int bfs(int[][] map, int[] start, boolean[][] visited) {
+        Queue<int[]> q = new LinkedList<>();
+        int[][] dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
+
+        int r = start[0];
+        int c = start[1];
+        q.add(new int[] {r, c});
+        visited[r][c] = true;
+
+        int cnt = 1;
+
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+
+            for (int[] d : dir) {
+                int nx = cur[0] + d[0];
+                int ny = cur[1] + d[1];
+
+                if (nx >= 0 && ny >= 0 && nx < n && ny < n && map[nx][ny] == 0 && !visited[nx][ny]) {
+                    q.add(new int[] {nx, ny});
+                    visited[nx][ny] = true;
+                    cnt++;
+                }
+            }
+        }
+
+        return cnt;
     }
 
     public static void main(String[] args) {
@@ -49,58 +74,37 @@ public class Main {
         m = sc.nextInt();
 
         grid = new int[n][n];
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 grid[i][j] = sc.nextInt();
-                if(grid[i][j] == 1) {
+                if (grid[i][j] == 1) {
                     stones.add(new int[] {i, j});
                 }
             }
         }
         
-        for(int i = 0; i < k; i++) {
+        for (int i = 0; i < k; i++) {
             int r = sc.nextInt() - 1;
             int c = sc.nextInt() - 1;
             starts.add(new int[] {r, c});
         }
 
-        createCombs(0);
+        createCombs(0, 0, new int[m]);
 
         int answer = 0;
 
-        for(int combIdx = 0; combIdx < combs.size(); combIdx++) {
-            for(int startIdx = 0; startIdx < starts.size(); startIdx++) {
-                int[][] map = createMap(combIdx);
-                int[][] visited = new int[n][n];
-                Queue<int[]> q = new LinkedList<>();
-                int[][] dir = new int[][] { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
+        for (int[] comb : combs) {
+            int[][] map = createMap(comb);
+            boolean[][] visited = new boolean[n][n];
+            int totalReachable = 0;
 
-                int[] start = starts.get(startIdx);
-                int r = start[0];
-                int c = start[1];
-                q.add(new int[] {r, c});
-                visited[r][c] = 1;
-
-                int cnt = 1;
-
-                while(!q.isEmpty()) {
-                    int[] cur = q.poll();
-
-                    for(int i = 0; i < dir.length; i++) {
-                        int nx = cur[0] + dir[i][0];
-                        int ny = cur[1] + dir[i][1];
-
-                        if(nx >= 0 && ny >= 0 && nx < n && ny < n && map[nx][ny] == 0 && visited[nx][ny] == 0) {
-                            q.add(new int[] {nx, ny});
-                            visited[nx][ny] = 1;
-                            cnt++;
-                        }
-                    }
-                    
+            for (int[] start : starts) {
+                if (!visited[start[0]][start[1]]) {
+                    totalReachable += bfs(map, start, visited);
                 }
-
-                answer = Math.max(answer, cnt);
             }
+
+            answer = Math.max(answer, totalReachable);
         }
 
         System.out.println(answer);
