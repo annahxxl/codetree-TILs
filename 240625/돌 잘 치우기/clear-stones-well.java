@@ -59,8 +59,8 @@ public class Main {
         }
         
         for(int i = 0; i < k; i++) {
-            int r = sc.nextInt();
-            int c = sc.nextInt();
+            int r = sc.nextInt() - 1;
+            int c = sc.nextInt() - 1;
             starts.add(new int[] {r, c});
         }
 
