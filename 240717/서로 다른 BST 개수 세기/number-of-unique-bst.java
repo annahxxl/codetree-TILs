@@ -11,8 +11,8 @@ public class Main {
 
         for(int i = 2; i <= n; i++) {
             int cnt = 0;
-            for(int j = 0; j < n; j++) {
-                cnt += dp[j] * dp[n - j - 1];
+            for(int j = 0; j < i; j++) {
+                cnt += dp[j] * dp[i - j - 1];
             }
             dp[i] = cnt;
         }
