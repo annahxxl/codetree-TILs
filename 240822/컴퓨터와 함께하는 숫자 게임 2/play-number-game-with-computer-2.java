@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        long m = sc.nextInt();
-        long a = sc.nextInt();
-        long b = sc.nextInt();
+        long m = sc.nextLong();
+        long a = sc.nextLong();
+        long b = sc.nextLong();
 
         long minCnt = m;
         long maxCnt = -1;
