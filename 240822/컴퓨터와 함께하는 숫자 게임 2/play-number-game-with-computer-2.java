@@ -3,20 +3,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int m = sc.nextInt();
-        int a = sc.nextInt();
-        int b = sc.nextInt();
+        long m = sc.nextInt();
+        long a = sc.nextInt();
+        long b = sc.nextInt();
 
-        int minCnt = m;
-        int maxCnt = -1;
+        long minCnt = m;
+        long maxCnt = -1;
 
-        for(int target = a; target <= b; target++) {
-            int l = 1, r = m;
-            int cnt = 0;
+        for(long target = a; target <= b; target++) {
+            long l = 1, r = m;
+            long cnt = 0;
 
             while(l <= r) {
                 cnt++;
-                int mid = (l + r) / 2;
+                long mid = (l + r) / 2;
 
                 if(mid == target) {
                     minCnt = Math.min(minCnt, cnt);
