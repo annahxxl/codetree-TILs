@@ -25,7 +25,7 @@ public class Main {
         for(int i = 0; i < n; i++)
             nums[i] = sc.nextInt();
         
-        int ans = -1;
+        int ans = 0;
         int l = 1;
         int r = 100000;
 
