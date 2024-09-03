@@ -8,9 +8,6 @@ public class Main {
         int cnt = 0;
 
         for(int i = 0; i < n; i++) {
-            if(nums[i] < max)
-                return false;
-            
             cnt += (nums[i] / max);
         }
 
