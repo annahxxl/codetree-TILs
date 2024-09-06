@@ -12,20 +12,22 @@ public class Main {
 
         int l = 1;
         int r = 1000000000;
+        int ans = -1;
 
         while(l <= r) {
             int mid = (l + r) / 2;
             int order = getOrder(mid);
 
             if(order == n) {
-                System.out.println(mid);
-            }
-
-            if(order > n) {
+                ans = mid;
+                r = mid - 1;
+            } else if(order > n) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         }
+        
+        System.out.println(ans);
     }
 }
