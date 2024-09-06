@@ -2,21 +2,21 @@ import java.util.Scanner;
 
 public class Main {
 
-    static int getOrder(int num) {
+    static long getOrder(long num) {
         return num - (num / 3) - (num / 5) + (num / 15);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        long n = sc.nextInt();
 
-        int l = 1;
-        int r = 1000000000;
-        int ans = -1;
+        long l = 1;
+        long r = Integer.MAX_VALUE;
+        long ans = -1;
 
         while(l <= r) {
-            int mid = (l + r) / 2;
-            int order = getOrder(mid);
+            long mid = (l + r) / 2;
+            long order = getOrder(mid);
 
             if(order == n) {
                 ans = mid;
